@@ -1,0 +1,8 @@
+N = 1000
+//Best To Worst according to number of operations
+1. constant:     O(1)         -> 1
+2. Logartithmic: O(logN)      -> 10
+3. Square root:  O(sqrt(N))   -> 32
+4. Linear:       O(N)         -> 1000
+5. Linearithmic: O(NlogN)     -> 10000
+6. Quadratic:    O(N*N)       -> 1000000
