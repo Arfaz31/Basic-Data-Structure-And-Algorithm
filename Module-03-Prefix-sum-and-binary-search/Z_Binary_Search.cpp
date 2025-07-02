@@ -44,4 +44,4 @@ int main()
     return 0;
 }
 
-//Time Complexity: O(nlogn)
+//Time Complexity: O((n + q) * log n)
