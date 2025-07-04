@@ -77,12 +77,34 @@ int main()
 
    int sz = size_of_linked_list(head);
    int sz1 = size_of_linked_list(head1);
+    
+   
 
-   if(sz==sz1)
+   if(sz!=sz1)
    {
-    cout << "YES";
+    cout << "NOT SAME";
    }else{
-    cout << "NO";
+   Node* temp1 = head;
+   Node* temp2 = head1;
+
+   int flag = 0;
+     while(temp1 !=NULL && temp2 !=NULL){
+       if(temp1->val != temp2->val)
+       {
+        flag = 1;
+        break;
+       }
+
+       temp1 = temp1->next;
+       temp2 = temp2->next;
+    }
+
+    if(flag==0)
+    {
+        cout << "SAME"<<endl;
+    }else{
+        cout<<"NOT SAME"<<endl;
+    }
    }
      
     return 0;

@@ -31,6 +31,8 @@ void insert_at_tail(Node* &head, Node* &tail, int val)
 };
 
 
+
+
 int size_of_linked_list(Node* head)
 {
  int sz = 0;
@@ -42,6 +44,23 @@ int size_of_linked_list(Node* head)
     }
     return sz;
 };
+
+void sort_linked_list(Node* head)
+{
+    for(Node* i = head; i->next != NULL; i= i->next)
+    {
+        for(Node* j=i->next; j!=NULL; j=j->next)
+        {
+            if(i->val > j->val)
+            {
+                swap(i->val,j->val);
+            }
+        }
+    }
+
+};
+
+
 
 void print_linked_list(Node* head)
 {
@@ -58,8 +77,7 @@ int main()
 {
     Node* head = NULL;
     Node* tail = NULL;
-    Node* head1 = NULL;
-    Node* tail1 = NULL;
+
 
     while(true){
         int val;
@@ -68,22 +86,21 @@ int main()
         insert_at_tail(head,tail,val);
     }
 
-     while(true){
-        int val1;
-        cin >>val1;
-        if(val1 == -1) break;
-        insert_at_tail(head1,tail1,val1);
+    sort_linked_list(head);
+
+    Node* temp = head;
+    while(temp->next !=NULL) //ekhane temp != NULL hoyni, Reason is- last Node a jeye temp = temp->next; temp er value NULL hye jeto then NULL->val access korar karone segmentaion fault error dito
+    {
+        if(temp->val == temp->next->val)
+        {
+            cout<<"Duplicate"<<endl;
+            return 0; // niche ar jabei na ekhanei code sesh hye jabe
+        }
+        temp = temp->next;
     }
 
-   int sz = size_of_linked_list(head);
-   int sz1 = size_of_linked_list(head1);
+    cout<<"Not Duplicate"<<endl;
 
-   if(sz==sz1)
-   {
-    cout << "YES";
-   }else{
-    cout << "NO";
-   }
      
     return 0;
 }

@@ -30,6 +30,29 @@ void insert_at_tail(Node* &head, Node* &tail, int val)
 
 };
 
+int max_find(Node* head)
+{
+    int mx = INT_MIN;
+ Node* temp =head;
+    while(temp != NULL)
+    {
+        mx=max(temp->val, mx);
+        temp=temp->next;
+    }
+    return mx;
+};
+int min_find(Node* head)
+{
+    int mn = INT_MAX;
+    Node* temp =head;
+    while(temp != NULL)
+    {
+        mn=min(temp->val, mn);
+        temp=temp->next;
+    }
+    return mn;
+};
+
 
 int size_of_linked_list(Node* head)
 {
@@ -58,8 +81,7 @@ int main()
 {
     Node* head = NULL;
     Node* tail = NULL;
-    Node* head1 = NULL;
-    Node* tail1 = NULL;
+
 
     while(true){
         int val;
@@ -68,22 +90,12 @@ int main()
         insert_at_tail(head,tail,val);
     }
 
-     while(true){
-        int val1;
-        cin >>val1;
-        if(val1 == -1) break;
-        insert_at_tail(head1,tail1,val1);
-    }
+    int mx=max_find(head);
+   int mn= min_find(head);
 
-   int sz = size_of_linked_list(head);
-   int sz1 = size_of_linked_list(head1);
+    cout <<mx << " " << mn;
 
-   if(sz==sz1)
-   {
-    cout << "YES";
-   }else{
-    cout << "NO";
-   }
+ 
      
     return 0;
 }

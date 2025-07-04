@@ -50,7 +50,7 @@ void print_linked_list(Node* head)
     Node* temp =head;
     while(temp != NULL)
     {
-        cout << temp->next << " ";
+       cout << temp->val << " ";
         temp = temp->next;
     }
     cout << endl;
