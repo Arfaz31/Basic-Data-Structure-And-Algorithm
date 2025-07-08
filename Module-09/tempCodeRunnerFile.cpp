@@ -1,0 +1,1 @@
+ delete_at_tail(head , tail);
