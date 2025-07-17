@@ -1,0 +1,8 @@
+a b c d e f stop
+5
+play a
+right
+left
+right
+right
+

@@ -1,12 +1,12 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 class Node
 {
-    public:
+public:
     int val;
-    Node* next;
-    Node* prev;
+    Node *next;
+    Node *prev;
 
     Node(int val)
     {
@@ -16,64 +16,62 @@ class Node
     }
 };
 
-
-void print_forward(Node* head)
+void print_forward(Node *head)
 {
-    Node* tmp = head;
-    while(tmp != NULL)
+    Node *tmp = head;
+    while (tmp != NULL)
     {
-        cout<<tmp->val<<" ";
+        cout << tmp->val << " ";
         tmp = tmp->next;
     }
-    cout<<endl;
+    cout << endl;
 }
 
-void print_backward(Node* tail)
+void print_backward(Node *tail)
 {
-    Node* tmp = tail;
-    while(tmp != NULL)
+    Node *tmp = tail;
+    while (tmp != NULL)
     {
-        cout<<tmp->val<<" ";
+        cout << tmp->val << " ";
         tmp = tmp->prev;
     }
-    cout<<endl;
+    cout << endl;
 }
 
-void delete_at_tail(Node* &head , Node* &tail )
+void delete_at_tail(Node *&head, Node *&tail)
 {
+    if (head == NULL)
+    {
+        return;
+    }
 
-    Node* deleteNode = tail;
+    Node *deleteNode = tail;
     tail = tail->prev;
-    
+
     delete deleteNode;
-    if(tail == NULL)
+    if (tail == NULL)
     {
         head = NULL;
         return;
     }
     tail->next = NULL;
-    
 };
-
 
 int main()
 {
-    Node* head = new Node(10);
-    Node* a = new Node(20);
-    Node* tail = new Node(30);
-  
-   head->next = a;
-   a->prev = head;
-   a->next = tail;
-   tail->prev = a;
+    Node *head = new Node(10);
+    Node *a = new Node(20);
+    Node *tail = new Node(30);
 
+    head->next = a;
+    a->prev = head;
+    a->next = tail;
+    tail->prev = a;
 
-
-
-    delete_at_tail(head , tail);
-    delete_at_tail(head , tail);
-    delete_at_tail(head , tail);
+    delete_at_tail(head, tail);
+    delete_at_tail(head, tail);
+    delete_at_tail(head, tail);
     print_forward(head);
- 
+
     return 0;
 }
