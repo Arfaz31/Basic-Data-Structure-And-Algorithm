@@ -48,28 +48,40 @@ Node *input_tree()
     return root;
 }
 
-void level_order(Node *root)
+bool search(Node *root, int targetkey)
 {
     if (root == NULL)
-        return;
-    queue<Node *> q;
-    q.push(root);
-    while (!q.empty())
     {
-        Node *f = q.front();
-        q.pop();
-        cout << f->val << " ";
-        if (f->left)
-            q.push(f->left);
-        if (f->right)
-            q.push(f->right);
+        return false;
+    }
+    if (root->val == targetkey)
+    {
+        return true;
+    }
+    if (root->val > targetkey)
+    {
+        return search(root->left, targetkey);
+    }
+    else
+    {
+        return search(root->right, targetkey);
     }
 }
 
 int main()
 {
     Node *root = input_tree();
-    level_order(root);
+    int targetkey;
+    cin >> targetkey;
+    bool ans = search(root, targetkey);
+    if (ans)
+    {
+        cout << "Found" << endl;
+    }
+    else
+    {
+        cout << "Not Found" << endl;
+    }
 
     return 0;
 }

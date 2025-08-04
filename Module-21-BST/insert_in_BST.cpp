@@ -50,8 +50,6 @@ Node *input_tree()
 
 void level_order(Node *root)
 {
-    if (root == NULL)
-        return;
     queue<Node *> q;
     q.push(root);
     while (!q.empty())
@@ -66,9 +64,32 @@ void level_order(Node *root)
     }
 }
 
+void insert(Node *&root, int val)
+{
+    if (root == NULL)
+        root = new Node(val);
+    if (root->val > val)
+    {
+        if (root->left == NULL)
+            root->left = new Node(val);
+        else
+            insert(root->left, val);
+    }
+    else
+    {
+        if (root->right == NULL)
+            root->right = new Node(val);
+        else
+            insert(root->right, val);
+    }
+}
+
 int main()
 {
     Node *root = input_tree();
+    int val;
+    cin >> val;
+    insert(root, val);
     level_order(root);
 
     return 0;

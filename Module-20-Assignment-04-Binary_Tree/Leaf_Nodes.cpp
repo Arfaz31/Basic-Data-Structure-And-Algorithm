@@ -28,6 +28,7 @@ Node *input_tree()
     queue<Node *> q;
     if (root)
         q.push(root);
+
     while (!q.empty())
     {
         Node *f = q.front();
@@ -46,30 +47,31 @@ Node *input_tree()
         }
     }
     return root;
-}
+};
 
-void level_order(Node *root)
+void leafNodes(Node *root, vector<int> &v)
 {
     if (root == NULL)
         return;
-    queue<Node *> q;
-    q.push(root);
-    while (!q.empty())
-    {
-        Node *f = q.front();
-        q.pop();
-        cout << f->val << " ";
-        if (f->left)
-            q.push(f->left);
-        if (f->right)
-            q.push(f->right);
-    }
+    if (root->left == NULL && root->right == NULL)
+        v.push_back(root->val);
+
+    leafNodes(root->left, v);
+    leafNodes(root->right, v);
 }
 
 int main()
 {
     Node *root = input_tree();
-    level_order(root);
+    vector<int> v;
+    leafNodes(root, v);
+
+    sort(v.begin(), v.end(), greater<int>());
+
+    for (int x : v)
+    {
+        cout << x << " ";
+    }
 
     return 0;
 }

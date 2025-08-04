@@ -28,6 +28,7 @@ Node *input_tree()
     queue<Node *> q;
     if (root)
         q.push(root);
+
     while (!q.empty())
     {
         Node *f = q.front();
@@ -46,30 +47,44 @@ Node *input_tree()
         }
     }
     return root;
-}
+};
 
-void level_order(Node *root)
+int max_depth(Node *root)
 {
     if (root == NULL)
-        return;
-    queue<Node *> q;
-    q.push(root);
-    while (!q.empty())
+        return 0;
+    if (root->left == NULL && root->right == NULL)
+        return 1;
+    int l = max_depth(root->left);
+    int r = max_depth(root->right);
+    return (max(l, r) + 1);
+}
+
+int count_nodes(Node *root)
+{
+    if (root == NULL)
     {
-        Node *f = q.front();
-        q.pop();
-        cout << f->val << " ";
-        if (f->left)
-            q.push(f->left);
-        if (f->right)
-            q.push(f->right);
+        return 0;
     }
+    int l = count_nodes(root->left);
+    int r = count_nodes(root->right);
+    return l + r + 1;
 }
 
 int main()
 {
     Node *root = input_tree();
-    level_order(root);
+    int totalNodes = count_nodes(root);
+    int mx_depth = max_depth(root);
+    int nodes_of_perfect_bTree = pow(2, mx_depth) - 1;
+    if (totalNodes == nodes_of_perfect_bTree)
+    {
+        cout << "YES" << endl;
+    }
+    else
+    {
+        cout << "NO" << endl;
+    }
 
     return 0;
 }

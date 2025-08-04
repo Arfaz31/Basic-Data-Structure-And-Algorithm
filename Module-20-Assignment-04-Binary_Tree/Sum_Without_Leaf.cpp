@@ -28,6 +28,7 @@ Node *input_tree()
     queue<Node *> q;
     if (root)
         q.push(root);
+
     while (!q.empty())
     {
         Node *f = q.front();
@@ -46,30 +47,27 @@ Node *input_tree()
         }
     }
     return root;
-}
+};
 
-void level_order(Node *root)
+int sum_without_leaves(Node *root)
 {
     if (root == NULL)
-        return;
-    queue<Node *> q;
-    q.push(root);
-    while (!q.empty())
-    {
-        Node *f = q.front();
-        q.pop();
-        cout << f->val << " ";
-        if (f->left)
-            q.push(f->left);
-        if (f->right)
-            q.push(f->right);
-    }
+        return 0;
+
+    if (root->left == NULL && root->right == NULL)
+        return 0;
+
+    int l = sum_without_leaves(root->left);
+    int r = sum_without_leaves(root->right);
+
+    return l + r + root->val;
 }
 
 int main()
 {
     Node *root = input_tree();
-    level_order(root);
+    int sum = sum_without_leaves(root);
+    cout << sum << endl;
 
     return 0;
 }
