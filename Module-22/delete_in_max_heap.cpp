@@ -52,6 +52,7 @@ void delete_heap(vector<int> &v)
 }
 void print_heap(vector<int> &v)
 {
+
     for (auto it : v)
     {
         cout << it << " ";
@@ -70,9 +71,13 @@ int main()
         cin >> val;
         insert_heap(v, val);
     }
-    print_heap(v);
-    delete_heap(v);
-    print_heap(v);
+    if (!v.empty())
+    {
+        delete_heap(v);
+        print_heap(v);
+        delete_heap(v);
+        print_heap(v);
+    }
 
     return 0;
 }
